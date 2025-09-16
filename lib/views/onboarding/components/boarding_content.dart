@@ -12,7 +12,7 @@ class OnboardingContent extends StatelessWidget {
     return Column(
       children: [
         Image.asset(
-          '/assets/images/logo.png',
+          'assets/images/logo.png',
           fit: BoxFit.cover,
         ),
         Spacer(),
@@ -29,7 +29,7 @@ class OnboardingContent extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: Colors.amber
+            color: primaryColor
           ),
         )
       ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:owala_app/utils/size_config.dart';
 import 'package:owala_app/views/onboarding/components/body.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -6,6 +7,7 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       body: Body(),
     );
