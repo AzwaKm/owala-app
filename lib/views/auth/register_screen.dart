@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:owala_app/utils/consts.dart';
 import 'package:owala_app/utils/validators.dart';
-import 'package:owala_app/views/onboarding/auth/components/auth_button.dart';
-import 'package:owala_app/views/onboarding/auth/components/auth_form_field.dart';
+import 'package:owala_app/views/auth/components/auth_button.dart';
+import 'package:owala_app/views/auth/components/auth_form_field.dart';
 
 class RegisterScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();

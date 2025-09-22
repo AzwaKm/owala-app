@@ -48,6 +48,7 @@ class _CategoriesState extends State<Categories> {
               color: textColor,
             ),
           ),
+          Spacer(),
           GestureDetector(
             onTap: () {},
             child: Text(
@@ -90,7 +91,7 @@ class _CategoriesState extends State<Categories> {
             Container(
               padding: EdgeInsets.all(10), //kurangi padding agar icon lebih kecil
               decoration: BoxDecoration(
-                color: selectedIndex == index ? primaryColor : Colors.grey,
+                color: selectedIndex == index ? primaryColor.withValues(alpha: 0.2) : Colors.grey.withValues(alpha: 0.0),
                 shape: BoxShape.circle,
               ),
               child: Icon(

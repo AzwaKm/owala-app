@@ -10,9 +10,9 @@ class BannerSlider extends StatelessWidget {
       constraints: BoxConstraints(maxHeight: 180),
       child: PageView(
         children: [
-          _BannerImage(asset: "/assets/images/banner_01.png"),
-          _BannerImage(asset: "/assets/images/banner_02.png"),
-          _BannerImage(asset: "/assets/images/banner_03.png")
+          _BannerImage(asset: "assets/images/banner_01.png"),
+          _BannerImage(asset: "assets/images/banner_02.png"),
+          _BannerImage(asset: "assets/images/banner_03.png")
         ],
       ),
     );

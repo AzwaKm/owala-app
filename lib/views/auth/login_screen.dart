@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:owala_app/utils/consts.dart';
 import 'package:owala_app/utils/validators.dart';
-import 'package:owala_app/views/onboarding/auth/components/auth_button.dart';
-import 'package:owala_app/views/onboarding/auth/components/auth_form_field.dart';
-import 'package:owala_app/views/onboarding/auth/components/social_auth_button.dart';
+import 'package:owala_app/views/auth/components/auth_button.dart';
+import 'package:owala_app/views/auth/components/auth_form_field.dart';
+import 'package:owala_app/views/auth/components/social_auth_button.dart';
 
 class LoginScreen extends StatelessWidget {
   // fungsinya untuk memanggil sebuah validator dari setiap form

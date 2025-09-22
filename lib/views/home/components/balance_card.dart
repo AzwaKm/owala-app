@@ -43,7 +43,7 @@ class BalanceCard extends StatelessWidget {
                   Text(
                     "Rp 221.000",
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Colors.black
                     ),
@@ -53,7 +53,9 @@ class BalanceCard extends StatelessWidget {
             ),
           ),
           Expanded(
+            flex: 3,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 _actionButton(Icons.arrow_upward, "Pay"),
                 _actionButton(Icons.add_circle, "Top Up"),
