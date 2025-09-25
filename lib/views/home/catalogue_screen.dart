@@ -15,6 +15,9 @@ class CatalogueScreen extends StatefulWidget {
 }
 
 class _CatalogueScreenState extends State<CatalogueScreen> {
+  // Tambahkan variabel untuk melacak kategori yang dipilih
+  String _selectedCategory = 'All';
+
   int _selectedIndex = 0;
   
   final List<Widget> _widgetOptions = [
@@ -31,32 +34,38 @@ class _CatalogueScreenState extends State<CatalogueScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _selectedIndex == 0 ? CatalogueAppBar() : null,
-      body:  _selectedIndex == 0
+      body: _selectedIndex == 0
         ? SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              BalanceCard(),
-              BannerSlider(),
-              SizedBox(height: 15),
-              Categories(),
-              SizedBox(height: 15),
-              Padding(
-                padding: EdgeInsetsGeometry.all(defaultPadding),
-                child: Text(
-                  "Drinkware",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: textColor
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                BalanceCard(),
+                BannerSlider(),
+                const SizedBox(height: 15),
+                // Teruskan fungsi callback untuk memperbarui kategori
+                Categories(onCategorySelected: (category) {
+                  setState(() {
+                    _selectedCategory = category;
+                  });
+                }),
+                const SizedBox(height: 15),
+                Padding(
+                  padding: const EdgeInsets.all(defaultPadding),
+                  child: Text(
+                    "Products",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: textColor,
+                    ),
                   ),
                 ),
-              ),
-              DrinkwareGrid()
-            ],
-          ),
-        )
-      : _widgetOptions[_selectedIndex - 1], // karena tab ke-0 catalogue screen
+                // Teruskan kategori yang dipilih ke DrinkwareGrid
+                DrinkwareGrid(selectedCategory: _selectedCategory),
+              ],
+            ),
+          )
+        : _widgetOptions[_selectedIndex - 1], // karena tab ke-0 catalogue screen
       bottomNavigationBar: BottomNavBar(selectedIndex: _selectedIndex, onItemTapped: _onItemTapped),
     );
   }

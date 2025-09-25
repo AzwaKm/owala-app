@@ -21,10 +21,10 @@ class AddToCart extends StatelessWidget {
             width: 54,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: product.color)
+              border: Border.all(color: Colors.black, width: 2) // Mengubah ketebalan border menjadi 2
             ),
             child: IconButton(
-              icon: Icon(Icons.add_shopping_cart_outlined),
+              icon: Icon(Icons.add_shopping_cart_outlined, color: Colors.black),
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
@@ -37,9 +37,11 @@ class AddToCart extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: product.color,
+            child: OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black,
+                side: BorderSide(color: Colors.black, width: 2), // Mengubah ketebalan border menjadi 2
                 maximumSize: Size.fromHeight(50),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18)
@@ -58,7 +60,7 @@ class AddToCart extends StatelessWidget {
                 "BUY NOW",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: textColor
+                  color: Colors.black
                 ),
               ),
             ),

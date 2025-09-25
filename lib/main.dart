@@ -34,7 +34,7 @@ class _OwalaAppState extends State<OwalaApp> {
         scaffoldBackgroundColor: Colors.white
       ),
       // initialRoute: untuk mendefinisikan kelas apa yang akan tampil pertama kali saat aplikasi dijalankan
-      initialRoute: '/onboarding',
+      initialRoute: '/catalogue',
       routes: {
         '/onboarding': (context) => OnboardingScreen(),
         '/login': (context) => LoginScreen(),

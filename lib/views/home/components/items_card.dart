@@ -3,10 +3,14 @@ import 'package:owala_app/models/products_model.dart';
 import 'package:owala_app/utils/consts.dart';
 
 class ItemsCard extends StatelessWidget {
-  final ProductsModel product;
-  final VoidCallback press;
+  const ItemsCard({
+    super.key,
+    required this.product,
+    required this.press,
+  });
 
-  const ItemsCard({super.key, required this.product, required this.press});
+  final ProductsModel product;
+  final GestureTapCallback press;
 
   @override
   Widget build(BuildContext context) {
@@ -17,31 +21,27 @@ class ItemsCard extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(defaultPadding),
+              padding: const EdgeInsets.all(defaultPadding),
               decoration: BoxDecoration(
-                color: product.color,
-                borderRadius: BorderRadius.circular(16)
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                    color: Colors.black,
+                    width: 2.0),
               ),
-              child: Hero(
-               tag: "${product.id}",
-               child: Image.asset(product.image),
-              ),
+              child: Image.asset(product.image),
             ),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 8),
           Text(
             product.title,
-            style: TextStyle(
-              color: textColor,
-              fontWeight: FontWeight.bold
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 5),
           Text(
             product.getFormattedPrice(),
-            style: TextStyle(
-              color: textColor
-            ),
+            style: const TextStyle(fontWeight: FontWeight.bold),
           )
         ],
       ),

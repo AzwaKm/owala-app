@@ -2,45 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:owala_app/utils/consts.dart';
 
 class Categories extends StatefulWidget {
+  final Function(String) onCategorySelected;
 
-  const Categories({super.key});
+  const Categories({super.key, required this.onCategorySelected});
 
   @override
   State<Categories> createState() => _CategoriesState();
 }
-List<Map<String, dynamic>> categories = [
-  {
-    "icon": Icons.local_drink,
-    "text": "Drinkware",
-  },
-  {
-    "icon": Icons.color_lens,
-    "text": "Colordrop",
-  },
-  {
-    "icon": Icons.card_giftcard,
-    "text": "Bundles",
-  },
-  {
-    "icon": Icons.accessibility,
-    "text": "Accessories",
-  },
-];
-
-int selectedIndex = 0;
-
 
 class _CategoriesState extends State<Categories> {
+  String _selectedCategory = 'All';
+
+  // Daftar kategori yang akan ditampilkan
+  final List<Map<String, dynamic>> _categories = const [
+    {'name': 'All', 'icon': Icons.grid_view},
+    {'name': 'Cakes', 'icon': Icons.cake},
+    {'name': 'Pastries', 'icon': Icons.bakery_dining},
+    {'name': 'Catering', 'icon': Icons.local_dining},
+    {'name': 'Drinks', 'icon': Icons.local_cafe},
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 23),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-         Row(
-          children: [
-             Text(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Judul kategori
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+          child: Text(
             "Categories",
             style: TextStyle(
               fontSize: 18,
@@ -48,70 +38,64 @@ class _CategoriesState extends State<Categories> {
               color: textColor,
             ),
           ),
-          Spacer(),
-          GestureDetector(
-            onTap: () {},
-            child: Text(
-              "View All",
-              style: TextStyle(
-                color: Color(0xFF236A91),
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          )
-          ],
-         ),
-         SizedBox(height: defaultPadding),
-         SizedBox(
-          height: 65,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: categories.length,
-            itemBuilder: (context, index) => _buildCategory(index),
-          ),
-         )
-        ],
-      ),
-    );
-  }
-
-  GestureDetector _buildCategory(int index) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedIndex = index;
-        });
-      },
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: defaultPadding),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              padding: EdgeInsets.all(10), //kurangi padding agar icon lebih kecil
-              decoration: BoxDecoration(
-                color: selectedIndex == index ? primaryColor.withValues(alpha: 0.2) : Colors.grey.withValues(alpha: 0.0),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                categories[index] ["icon"],
-                color: selectedIndex == index ? primaryColor : secondaryColor,
-                size: 20,
-              ),
-            ),
-            SizedBox(height: 7),
-            Text(
-              categories[index] ["text"],
-              style: TextStyle(
-                color: selectedIndex == index ? primaryColor : secondaryColor,
-                fontWeight: selectedIndex == index ? FontWeight.bold : FontWeight.normal,
-                fontSize: 12,
-              ),
-            )
-          ],
         ),
-      ),
+        const SizedBox(height: 15),
+        // Daftar kategori yang bisa digulir
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              const SizedBox(width: defaultPadding),
+              ..._categories.map((category) {
+                final isSelected = _selectedCategory == category['name'];
+                return GestureDetector(
+                  onTap: () {
+                    // Perbarui kategori yang dipilih saat widget diketuk
+                    setState(() {
+                      _selectedCategory = category['name'] as String;
+                    });
+                    // Panggil fungsi callback untuk memberi tahu widget induk
+                    widget.onCategorySelected(_selectedCategory);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Column(
+                      children: [
+                        // Lingkaran ikon kategori dengan border kondisional
+                        Container(
+                          width: 56, // Diameter CircleAvatar (2 * radius)
+                          height: 56,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: isSelected ? Colors.black : Colors.white,
+                            border: isSelected 
+                                ? null 
+                                : Border.all(color: Colors.black, width: 2),
+                          ),
+                          child: Icon(
+                            category['icon'] as IconData,
+                            color: isSelected ? Colors.white : Colors.black,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        // Nama kategori
+                        Text(
+                          category['name'] as String,
+                          style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: isSelected ? Colors.black : textColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }),
+              const SizedBox(width: defaultPadding),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

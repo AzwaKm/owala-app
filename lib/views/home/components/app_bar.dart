@@ -7,7 +7,6 @@ class CatalogueAppBar extends StatelessWidget implements PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      // 
       automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
       elevation: 0,
@@ -24,7 +23,7 @@ class CatalogueAppBar extends StatelessWidget implements PreferredSizeWidget{
               ),
             ),
             Text(
-              "Jakarta, Indonesia",
+              "Jonggol, Indonesia",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
@@ -37,11 +36,11 @@ class CatalogueAppBar extends StatelessWidget implements PreferredSizeWidget{
       actions: [
         IconButton(
           onPressed: () {},
-          icon: Icon(Icons.shopping_cart_outlined, color: Colors.black),
+          icon: Icon(Icons.search, color: Colors.black),
         ),
         IconButton(
           onPressed: () {},
-          icon: Icon(Icons.notifications_none, color: Colors.black),
+          icon: Icon(Icons.shopping_cart, color: Colors.black),
         )
       ],
     );

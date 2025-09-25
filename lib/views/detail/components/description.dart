@@ -15,7 +15,9 @@ class Description extends StatelessWidget {
         product.description,
         style: TextStyle(
           height: 1.5,
-          color: textColor
+          color: Colors.black,
+          fontWeight: FontWeight.bold, // Mengubah warna teks menjadi hitam
+          fontSize: 25, // Memperbesar ukuran teks
         ),
       ),
     );

@@ -25,7 +25,6 @@ class _BodyState extends State<Body> {
               child: PageView.builder(
                 controller: _pageController,
                 onPageChanged: (value) {
-                  // maksud dari kode ini adalah untuk memberi tahu setiap kali ada perubahan di satu objek/halaman yang di trigger oleh adanya interaksi oleh pengguna
                   setState(() {
                     currentPage = value;
                   });
@@ -47,12 +46,20 @@ class _BodyState extends State<Body> {
               )
             ),
             Padding(
-              padding: EdgeInsetsGeometry.symmetric(horizontal: 15, vertical: 30),
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 30),
               child: SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryColor
+                child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    side: BorderSide(
+                      color: Colors.black,
+                      width: 2,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                   onPressed: () {
                     if (currentPage == onBoardingData.length - 1) {
@@ -66,9 +73,11 @@ class _BodyState extends State<Body> {
                     }
                   },
                   child: Text(
-                    // currentPage == 3 - 1 ?
-                    currentPage == onBoardingData.length - 1 ? "Get Started" : "Next",
-                    style: TextStyle(color: Colors.white),
+                    currentPage == onBoardingData.length - 1 ? "Starting Now" : "Ready",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -86,7 +95,7 @@ class _BodyState extends State<Body> {
         borderRadius: BorderRadius.circular(5),
         color: currentPage == index ? primaryColor : secondaryColor,
       ),
-      width:  currentPage == index ? 20 : 7,
+      width: currentPage == index ? 20 : 7,
       height: 5,
       duration: animationDuration,
     );
